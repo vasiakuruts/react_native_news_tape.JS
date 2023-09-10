@@ -1,34 +1,40 @@
 import React, { useState } from "react";
-import { Text, View, Button, FlatList, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Button,
+  FlatList,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { gStyle } from "../../components/g-styles/style";
+import styles from "./styles";
+import temporaryNews from "../../temporary";
 
 const MainPage = ({ navigation }) => {
   const loadScene = () => {
     navigation.navigate("Contact");
   };
 
-  const [news, setNews] = useState([
-    { id: 1, name: "Google", anons: "Google!!!", full: "Google is coll!" },
-    { id: 2, name: "Apple", anons: "Apple!!!", full: "Apple is coll!" },
-    {
-      id: 3,
-      name: "FaceBook",
-      anons: "FaceBook!!!",
-      full: "FaceBook is coll!",
-    },
-  ]);
+  const [news, setNews] = useState(temporaryNews);
   return (
     <View style={gStyle.main}>
-      <Text style={gStyle.title}>Голова сторінка</Text>
-      <Button title="Завантажити сторінки" onPress={loadScene} />
+      <Text style={[gStyle.title, styles.headers]}>Голова сторінка</Text>
       <FlatList
         data={news}
         renderItem={({ item }) => (
           <TouchableOpacity
+            style={styles.item}
             onPress={() => navigation.navigate("FullInfo", item)}
           >
-            <Text>{item.name}</Text>
-            <Text>{item.anons}</Text>
+            <Image
+              source={{ uri: item.img }}
+              style={{
+                width: 100,
+                height: 100,
+              }}
+            />
+            <Text style={styles.title}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
