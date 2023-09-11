@@ -28,4 +28,15 @@ export default styles = StyleSheet.create({
     marginTop: 5,
     color: "#474747",
   },
+  image: {
+    width: 100,
+    height: 100,
+  },
+  iconAdd: {
+    textAlign: "center",
+    marginBottom: 15,
+  },
+  iconClose: {
+    textAlign: "center",
+  },
 });
